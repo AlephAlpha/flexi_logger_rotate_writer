@@ -3,6 +3,18 @@ name = "flexi_logger_rotate_writer"
 version = "0.0.0"
 authors = ["AlephAlpha <alephalpha911@gmail.com>"]
 edition = "2018"
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/AlephAlpha/flexi_logger_rotate_writer"
+documentation = "https://docs.rs/flexi_logger_rotate_writer"
+homepage = "https://github.com/AlephAlpha/flexi_logger_rotate_writer"
+description = """
+A custom log writer for emabee's flexi_logger. It is just a simplified version of \
+flexi_logger's FileLogWriter. Simply rotates every day, and stores the logs in \
+files like `foo_r2021-03-28.log`. No cleanup. No other configs.
+"""
+keywords = ["file", "logger"]
+categories = ["development-tools::debugging"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 

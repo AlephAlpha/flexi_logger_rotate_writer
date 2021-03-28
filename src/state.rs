@@ -112,9 +112,9 @@ fn open_log_file(config: &Config) -> IoResult<(Box<dyn Write + Send>, Date<Local
 
 #[cfg(target_os = "linux")]
 mod linux {
-    use std::path::{Path, PathBuf};
+    use std::path::Path;
 
-    pub fn create_symlink(link: &PathBuf, logfile: &Path) {
+    pub fn create_symlink(link: &Path, logfile: &Path) {
         if std::fs::symlink_metadata(link).is_ok() {
             // remove old symlink before creating a new one
             if let Err(e) = std::fs::remove_file(link) {

@@ -5,7 +5,7 @@ use std::{
     sync::Mutex,
 };
 
-/// Builder for `RotateLogWriter`.
+/// Builder for [`RotateLogWriter`].
 pub struct RotateLogWriterBuilder {
     basename: Option<String>,
     discriminant: Option<String>,
@@ -27,7 +27,7 @@ impl Default for RotateLogWriterBuilder {
 }
 
 impl RotateLogWriterBuilder {
-    /// Makes the `RotateLogWriter` print an info message to stdout
+    /// Makes the [`RotateLogWriter`] print an info message to stdout
     /// when a new file is used for log-output.
     #[inline]
     #[must_use]
@@ -36,8 +36,8 @@ impl RotateLogWriterBuilder {
         self
     }
 
-    /// Makes the `RotateLogWriter` use the provided format function for the log entries,
-    /// rather than the `default_format`.
+    /// Makes the [`RotateLogWriter`] use the provided format function for the log entries,
+    /// rather than the [`default_format`](https://docs.rs/flexi_logger/0.17.1/flexi_logger/fn.default_format.html).
     #[inline]
     #[must_use]
     pub fn format(mut self, format: FormatFunction) -> Self {
@@ -121,7 +121,7 @@ impl RotateLogWriterBuilder {
         self
     }
 
-    /// Produces the `RotateLogWriter`.
+    /// Produces the [`RotateLogWriter`].
     pub fn try_build(mut self) -> Result<RotateLogWriter, FlexiLoggerError> {
         // make sure the folder exists or create it
         let p_directory = Path::new(&self.config.filename_config.directory);

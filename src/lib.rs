@@ -1,3 +1,30 @@
+//! A custom log writer for emabee's [flexi_logger](https://github.com/emabee/flexi_logger).
+//!
+//! It is just a simplified version of flexi_logger's
+//! [`FileLogWriter`](https://docs.rs/flexi_logger/0.17.1/flexi_logger/writers/struct.FileLogWriter.html).
+//! Simply rotates every day, and stores the logs in files like `foo_r2021-03-28.log`.
+//! No cleanup. No other configs.
+//!
+//! ## Example usage
+//! ```rust
+//! use flexi_logger_rotate_writer::RotateLogWriter;
+//! use flexi_logger::{Logger, LogTarget};
+//!
+//! let log_writer = RotateLogWriter::builder()
+//!     .directory("path/to/where/you/want/to/store/the/log/files")
+//!     // Some other configs...
+//!     .try_build()
+//!     .unwrap();
+//!
+//! Logger::with_env()
+//!     .log_target(LogTarget::Writer(Box::new(log_writer)))
+//!     // Some other configs...
+//!     .start()
+//!     .unwrap();
+//!
+//! // ...
+//! ```
+
 use flexi_logger::{writers::LogWriter, DeferredNow, FormatFunction, LevelFilter, Record};
 use state::State;
 use std::{
@@ -15,9 +42,11 @@ pub use builder::RotateLogWriterBuilder;
 const WINDOWS_LINE_ENDING: &[u8] = b"\r\n";
 const UNIX_LINE_ENDING: &[u8] = b"\n";
 
-/// A simplified version of `flexi_logger`'s `FileLogWriter`.
+/// A simplified version of `flexi_logger`'s
+/// [`FileLogWriter`](https://docs.rs/flexi_logger/0.17.1/flexi_logger/writers/struct.FileLogWriter.html).
 ///
-/// It simply rotates every day. No cleanup. No other configs.
+/// It simply rotates every day, and stores the logs in files like `foo_r2021-03-28.log`.
+/// No cleanup. No other configs.
 pub struct RotateLogWriter {
     format: FormatFunction,
     line_ending: &'static [u8],
@@ -40,7 +69,7 @@ impl RotateLogWriter {
         }
     }
 
-    /// Instantiates a builder for `RotateLogWriter`.
+    /// Instantiates a builder for [`RotateLogWriter`].
     #[must_use]
     pub fn builder() -> RotateLogWriterBuilder {
         RotateLogWriterBuilder::default()
