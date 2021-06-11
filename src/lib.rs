@@ -8,7 +8,7 @@
 //! ## Example usage
 //! ```rust
 //! use flexi_logger_rotate_writer::RotateLogWriter;
-//! use flexi_logger::{Logger, LogTarget};
+//! use flexi_logger::Logger;
 //!
 //! let log_writer = RotateLogWriter::builder()
 //!     .directory("path/to/where/you/want/to/store/the/log/files")
@@ -16,8 +16,9 @@
 //!     .try_build()
 //!     .unwrap();
 //!
-//! Logger::with_env()
-//!     .log_target(LogTarget::Writer(Box::new(log_writer)))
+//! Logger::try_with_env()
+//!     .unwrap()
+//!     .log_to_writer(Box::new(log_writer))
 //!     // Some other configs...
 //!     .start()
 //!     .unwrap();

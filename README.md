@@ -10,16 +10,16 @@ Most of the codes are directly taken from flexi_logger, with some modification.
 
 ```rust
 use flexi_logger_rotate_writer::RotateLogWriter;
-use flexi_logger::{Logger, LogTarget};
+use flexi_logger::{FlexiLoggerError, Logger};
 
-fn main() {
+fn main() -> Result<(), FlexiLoggerError> {
     let log_writer = RotateLogWriter::builder()
         .directory("path/to/where/you/want/to/store/the/log/files")
         // Some other configs...
         .try_build()?;
 
-    Logger::with_env()
-        .log_target(LogTarget::Writer(Box::new(log_writer)))
+    Logger::try_with_env()?
+        .log_to_writer(Box::new(log_writer))
         // Some other configs...
         .start()?;
 

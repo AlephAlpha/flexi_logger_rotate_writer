@@ -1,6 +1,6 @@
 [package]
 name = "flexi_logger_rotate_writer"
-version = "0.0.0"
+version = "0.1.0"
 authors = ["AlephAlpha <alephalpha911@gmail.com>"]
 edition = "2018"
 license = "MIT"
@@ -20,4 +20,4 @@ categories = ["development-tools::debugging"]
 
 [dependencies]
 chrono = "0.4"
-flexi_logger = "0.17"
+flexi_logger = "0.18"
